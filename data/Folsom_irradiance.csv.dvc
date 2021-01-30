@@ -1,0 +1,4 @@
+outs:
+- md5: 12c7a5cd4b9c8aad42af2a0a0823d4b9
+  size: 65318074
+  path: Folsom_irradiance.csv

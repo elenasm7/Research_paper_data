@@ -1,0 +1,4 @@
+outs:
+- md5: 67607892ef212e1c9d083ef3b58e1ae2
+  size: 98698817
+  path: Folsom_weather.csv
