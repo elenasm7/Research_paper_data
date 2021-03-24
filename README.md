@@ -42,3 +42,22 @@ listed above, but this data was gathered from:
 2. Optimize model by testing different parameter
 3. If need be, add in more data
 4. Train with all data on cloud platfrom
+
+## Models
+
+Lets start with the Pretrain CNN models we are utilizing for our image branch. The four models we are testing with are:
+1. RestNet50
+2. InceptionV3
+3. Inception RestNet V2
+4. VGG 16
+
+Below we will get into the basics of why we've chosen these models:
+
+**RestNet50:**
+
+**InceptionV3:**
+
+**Inception RestNet V2:**
+
+**VGG 16:**
+
