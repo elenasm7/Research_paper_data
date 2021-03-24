@@ -9,6 +9,8 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from math import pi, sin
+import tarfile
+import cv2
 
 
 def breakdown_dates(df,column): 
@@ -237,3 +239,67 @@ def process_timeahead_attributes(df_name,train,test,time_to_period):
     testX = np.hstack([testContinuous,testTimeCols,testCategorical])
 #     # return the concatenated training and testing data
     return (trainX, testX)
+
+def save_pickle(file_name,obj):
+    with open(file_name, 'wb') as fout:
+        pickle.dump(obj, fout)
+
+def open_pickle(file_name):
+    with open(file_name, 'rb') as handle:
+        obj = pickle.load(handle)
+    return obj
+
+def get_np_array_from_tar_object(tar_extractfl):
+    '''converts a buffer from a tar file in np.array'''
+    return np.asarray(bytearray(tar_extractfl.read())
+                      , dtype=np.uint8)
+
+
+def load_sky_images(df,yr=None,tar=None):
+    # initialize our images array (i.e., the house images themselves)
+    images = []
+    
+    yr = '0'
+    for img in df.values:
+        yr_file = img[:4]
+        if yr == yr_file:
+            pass
+        else:
+            if tar:
+                print("deleted tar")
+                del tar
+        
+            yr = img[:4]
+            file = f'data/Folsom_sky_images_{yr}.tar.bz2'
+            print(yr,file)
+            tar = tarfile.open(file)
+        
+        image = cv2.imdecode(get_np_array_from_tar_object(tar.extractfile(img)), 0)
+        image = cv2.resize(image, (32, 32))
+        images.append(image)
+    
+    return np.array(images)
+
+def get_index_of_img(train,test,sorted_img_dict):
+    
+    train_img,test_img = [],[]
+    
+    for i in train:
+        train_img.append(sorted_img_5[sorted_img_5['index'] == i].index[0])
+    
+    for i in test:
+        test_img.append(sorted_img_5[sorted_img_5['index'] == i].index[0])
+
+    return train_img,test_img
+
+def get_img_from_index(train_img_ind,test_img_ind,img_matrices):
+    
+    train_img,test_img = [],[]
+    
+    for i in train_img_ind:
+        train_img.append(img_matrices[i])
+    
+    for i in test_img_ind:
+        test_img.append(img_matrices[i])
+    
+    return np.array(train_img),np.array(test_img)
