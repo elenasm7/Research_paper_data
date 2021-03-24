@@ -51,6 +51,11 @@ Lets start with the Pretrain CNN models we are utilizing for our image branch. T
 3. Inception RestNet V2
 4. VGG 16
 
+The below graphs offer some insight into model accuracy vs. operations needed for one pass. This helped us decide in choosing Inception and Resnet Models
+
+<img src="https://github.com/elenasm7/Research_paper_data/blob/main/model_accuracy_to_G_ops.jpg" atl="accuracy to num of operations" width="600" height="400" />
+
+
 Below we will get into the basics of why we've chosen these models:
 
 **RestNet50:**
