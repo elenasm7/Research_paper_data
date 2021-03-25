@@ -42,6 +42,7 @@ listed above, but this data was gathered from:
 2. Optimize model by testing different parameter
 3. If need be, add in more data
 4. Train with all data on cloud platfrom
+5. Write Research Paper with findings
 
 ## Models
 
