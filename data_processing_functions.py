@@ -285,10 +285,10 @@ def get_index_of_img(train,test,sorted_img_dict):
     train_img,test_img = [],[]
     
     for i in train:
-        train_img.append(sorted_img_5[sorted_img_5['index'] == i].index[0])
+        train_img.append(sorted_img_dict[sorted_img_dict['index'] == i].index[0])
     
     for i in test:
-        test_img.append(sorted_img_5[sorted_img_5['index'] == i].index[0])
+        test_img.append(sorted_img_dict[sorted_img_dict['index'] == i].index[0])
 
     return train_img,test_img
 
