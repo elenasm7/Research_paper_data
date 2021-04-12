@@ -261,21 +261,23 @@ def load_sky_images(df,yr=None,tar=None):
     
     yr = '0'
     for img in df.values:
-        yr_file = img[:4]
+#         print(img[0][:4])
+        yr_file = img[0][:4]
+#         print(yr_file)
         if yr == yr_file:
             pass
         else:
             if tar:
                 print("deleted tar")
                 del tar
-        
-            yr = img[:4]
+            
+            yr = img[0][:4]
             file = f'data/Folsom_sky_images_{yr}.tar.bz2'
             print(yr,file)
             tar = tarfile.open(file)
         
-        image = cv2.imdecode(get_np_array_from_tar_object(tar.extractfile(img)), 0)
-        image = cv2.resize(image, (32, 32))
+        image = cv2.imdecode(get_np_array_from_tar_object(tar.extractfile(img[0])), 0)
+        image = cv2.resize(image, (64, 64))
         images.append(image)
     
     return np.array(images)
